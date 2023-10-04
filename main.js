@@ -1,11 +1,18 @@
 // simulador interactivo de cotizador de servicios de manicura (ideado en proyecto Kaloop DW)
 alert("Bienvenido a Kaloop! Aqui te mostramos los servicios disponibles:")
 
-// valores de cada servicio de manicura
-const valor1 = 10000
-const valor2 = 15000
-const valor3 = 35000
-const valor4 = 30000
+// cualidades en Servicios de manicura
+const Servicios = [
+    {id:1, name: "Manicure Spa", valor:10000}, 
+    {id:2, name:"Manicure Permanente", valor:15000}, 
+    {id:3, name:"Nails Acrilicas", valor:35000}, 
+    {id:4, name:"Nails en Gel", valor:30000}
+]
+
+// Agregando un servicio a mi lista
+Servicios.push({id:5, name:"Pedicura tradicional", valor:10000})
+
+console.log(Servicios)
 
 // funcion para la adicion de valores de servicios
 let ValorTotal = function(valor){
@@ -13,30 +20,31 @@ let ValorTotal = function(valor){
 }
 let Resultadofinal = 0
 
+let listaServicios = ""
+
+Servicios.forEach(
+    function(servicio, index){
+        listaServicios = listaServicios + (index + 1) + " " + servicio.name + "\n"
+    }
+)
+
 let AgregarServicio = null
+
 // ciclo para cuando el usuario requiera o no agregar servicios
 do {
-    let manicura = parseInt(prompt("selecciona el numero que corresponde al servicio que requieres:\n 1 Manicure Spa \n 2 Manicure Permanente \n 3 Nails acrilicas \n 4 Nails Gel")) 
+    let manicura = parseInt(prompt("selecciona el numero que corresponde al servicio que requieres:\n" + listaServicios)) 
 
     // condicional para el servicio seleccionado por el usuario
-    if (manicura == 1) {
-        alert("el valor de manicure spa es de: " + valor1);
-        ValorTotal(valor1)
-    }else if (manicura == 2) {
-        alert("el valor de manicure permanente es de: " + valor2);
-        ValorTotal(valor2)
-    }else if (manicura == 3) {
-        alert("el valor de nails acrilicas es de: " + valor3);
-        ValorTotal(valor3)
-    }else if (manicura == 4) {
-        alert("el valor de nails gel es de: " + valor4);
-        ValorTotal(valor4)
+    if (manicura >= 1 && manicura <= Servicios.length) {
+        let Servicio = Servicios.find((x)=> manicura == x.id)
+        alert("el valor de " + Servicio.name + " es de " + Servicio.valor);
+        ValorTotal(Servicio.valor)
     }else{
-        alert("ingresa un numero valido")
+        console.log("ingresa un numero valido")
     }    
     
     AgregarServicio = prompt("Desea algun servicio adicional?")
-} while(AgregarServicio == "si")
+} while(AgregarServicio.toLowerCase() == "si")
 
 alert("continua para conocer el valor total")
 
