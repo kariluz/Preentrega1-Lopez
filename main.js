@@ -14,6 +14,20 @@ Servicios.push({id:5, name:"Pedicura tradicional", valor:10000})
 
 console.log(Servicios)
 
+// Aplicando DOM
+let table = document.getElementById('TablaServiciosBody');
+Servicios.forEach(
+    function(servicio, _index){
+        let row = "";
+        row = `<tr> <td>${servicio.id}</td> <td>${servicio.name}</td> <td>${servicio.valor}</td> </tr>`;
+        table.innerHTML += row
+    }
+)
+
+// Evento
+let boton = document.getElementById("mensaje")
+boton.addEventListener("click", function(){alert("Gracias por preferir a Kaloop, con gusto te ayudaremos")})
+
 // funcion para la adicion de valores de servicios
 let ValorTotal = function(valor){
     Resultadofinal = valor + Resultadofinal
