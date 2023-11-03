@@ -1,0 +1,22 @@
+{
+    "servicios": [
+        {"id":"1", 
+        "name": "Manicure Spa", 
+        "valor":"10000"
+        },
+        {"id":"2", 
+        "name":"Manicure Permanente", 
+        "valor":"15000"
+        },
+
+        {"id":"3", 
+        "name":"Nails Acrilicas", 
+        "valor":"35000"
+        }, 
+
+        {"id":"4", 
+        "name":"Nails en Gel", 
+        "valor":"30000"
+        }
+    ]
+}
