@@ -1,74 +1,96 @@
-fetch("servicios.json", { mode: 'no-cors'})
+let servicios = [];
+let serviciosCotizados = [];
+fetch("servicios.json")
     .then((response) => {
         return response.json()
     })
     .then(data =>{
-        debugger
-        let servicios = data.servicios
+        servicios = data.servicios
 
         let table = document.getElementById('TablaServiciosBody');
         servicios.forEach(
                 function(servicio, _index){
                     let row = "";
-                    row = `<tr> <td>${servicio.id}</td> <td>${servicio.name}</td> <td>${servicio.valor}</td><td><button>${servicio.seleccion}</button></td> </tr>`;
+                        row = `<tr> <td>${servicio.id}</td> <td>${servicio.name}</td><td><button onclick="agregarServi(${servicio.id})">Agregar</button></td> </tr>`;  
                     table.innerHTML += row
                 }
             )
     })
+    
+function agregarServi(id) {
+  // Aqui ya tenemos el servicio elegido po el cliente
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: "btn btn-success",
+      cancelButton: "btn btn-danger"
+    },
+    buttonsStyling: false
+  });
+  swalWithBootstrapButtons.fire({
+    title: "Estas seguro?",
+    text: "No podras volver atras",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Si, quiero agregar este servicio",
+    cancelButtonText: "No, cancelar",
+    reverseButtons: true
+  }).then((result) => {
+    if (result.isConfirmed) {  
 
-// Servicios.push({id:5, name:"Pedicura tradicional", valor:10000})
+      swalWithBootstrapButtons.fire({
+        title: "Agregado",
+        text: "El servicio ha sido agregado con exito",
+        icon: "success"
+      });   
+        
+      let servicio = servicios.find( x => x.id == id);
 
-// console.log(Servicios)
+      serviciosCotizados.push(servicio);
 
-// Aplicando DOM
-// let table = document.getElementById('TablaServiciosBody');
-// Servicios.forEach(
-//     function(servicio, _index){
-//         let row = "";
-//         row = `<tr> <td>${servicio.id}</td> <td>${servicio.name}</td> <td>${servicio.valor}</td><td><button>${servicio.seleccion}</button></td> </tr>`;
-//         table.innerHTML += row
-//     }
-// )
+      let ServJsonString = JSON.stringify(serviciosCotizados);
 
-// // Evento
-// let boton = document.getElementById("mensaje")
+      localStorage.setItem("servicios cotizados", ServJsonString);
+
+      ImprimirCotizados();
+    } else if (
+      /* Read more about handling dismissals below */
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      swalWithBootstrapButtons.fire({
+        title: "Cancelado",
+        text: "Puedes continuar si requieres algun servicio",
+        icon: "error"
+      });
+    }
+  });
+}
+
+function ImprimirCotizados() {
+  let listaAImprimir = '';
+  serviciosCotizados.forEach(
+    function(servicio){
+      listaAImprimir += `<tr> <td>${servicio.name}</td> <td>${servicio.valor}</td> </tr>`
+    }
+  )
+  document.getElementById('TablaCotizacion').innerHTML = listaAImprimir;
+}
+
+function ValorTotal() {
+  let total = 0;
+
+  serviciosCotizados.forEach(
+    function(servicio){
+      total = total + servicio.valor;
+    }
+  )
+
+  document.getElementById('TablaCotizacion').innerHTML += `<tr> <td>valor</td> <td>${total}</td> </tr>`;
+}
+
+// let boton = document.getElementById("mensajeValor")
 // boton.addEventListener("click", function(){alert("Gracias por preferir a Kaloop, con gusto te ayudaremos")})
 
-// // funcion para la adicion de valores de servicios
-// let ValorTotal = function(valor){
-//     Resultadofinal = valor + Resultadofinal
-// }
-// let Resultadofinal = 0
 
-// let listaServicios = ""
-
-// Servicios.forEach(
-//     function(servicio, index){
-//         listaServicios = listaServicios + (index + 1) + " " + servicio.name + "\n"
-//     }
-// )
-
-// let AgregarServicio = null
-
-// // ciclo para cuando el usuario requiera o no agregar servicios
-// do {
-//     let manicura = parseInt(prompt("selecciona el numero que corresponde al servicio que requieres:\n" + listaServicios)) 
-
-//     // condicional para el servicio seleccionado por el usuario
-//     if (manicura >= 1 && manicura <= Servicios.length) {
-//         let Servicio = Servicios.find((x)=> manicura == x.id)
-//         alert("el valor de " + Servicio.name + " es de " + Servicio.valor);
-//         ValorTotal(Servicio.valor)
-//     }else{
-//         console.log("ingresa un numero valido")
-//     }    
-    
-//     AgregarServicio = prompt("Desea algun servicio adicional?")
-// } while(AgregarServicio.toLowerCase() == "si")
-
-// alert("continua para conocer el valor total")
-
-// alert("el valor total de tu servicio es de " + Resultadofinal)
 
 
 
