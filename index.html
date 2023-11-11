@@ -5,39 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="./bootstrap-5.3.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./estilos.css">
     <title>Kaloop By Kariluz</title>
 </head>
 <body>
-    <div><h1>Cotizador de servicios Kallop</h1></div>
-    <h2>El amor propio tambien empieza en el cuidado de tus manos <br>Selecciona el servicio que requieres</h2>
+    <div class="encabezado"><h1>Cotizador de servicios Kallop<br>"El amor propio tambien empieza en el cuidado de tus manos"</h1></div>
     
     <div>
-        <table id="TablaServicios">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Servicio</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody id="TablaServiciosBody">
-            </tbody>
-        </table>
+    <h2>Selecciona a continuacion el servicio que requieres</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <table class="table table-hover" id="TablaServicios">
+                    <thead>
+                        <tr>
+                            <th>#ID</th>
+                            <th>Servicio</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="TablaServiciosBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>    
+    </div>
     </div>
 
     <h2>A continuacion encuentras desglosada tu cotizacion</h2>
     
-    <div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Servicio</th>
-                    <th>Valor</th>
-                </tr>
-            </thead>
-            <tbody id="TablaCotizacion">
-            </tbody>
-        </table>
+    <div class="container">
+        <div class="row">
+            <div class="col">        
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Servicio</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-active" id="TablaCotizacion">
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
     <button id="mensajeValor" onclick="ValorTotal()">Consulta el valor total a pagar</button>

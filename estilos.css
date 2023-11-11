@@ -1,0 +1,33 @@
+@font-face {
+    font-family: "fuente-principal";
+    src: url("../assets/fuentes/YsabeauInfant-ExtraLightItalic.ttf");
+}
+@font-face {
+    font-family: "fuente-secundaria";
+    src: url("../assets/fuentes/Montserrat-Light.ttf");
+}
+
+h1 {
+    font-family: "fuente-principal";
+    font-weight: bold;
+}
+    
+h2 {
+    font-family: "fuente-secundaria";
+    font-weight: bold;
+    color: #9f227c;
+    text-align: center;
+    margin-top: 35px;
+    margin-bottom: 15px;
+}
+
+.encabezado {
+    text-align: center;
+    color: #9f227c;
+    background-color: #FAE9DE;
+    padding: 20px;
+}
+
+/* .caja-informatica {
+    text-align: center;
+} */
