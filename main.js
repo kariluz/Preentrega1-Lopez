@@ -84,13 +84,6 @@ function ValorTotal() {
     }
   )
 
-  document.getElementById('TablaCotizacion').innerHTML += `<tr> <td>valor</td> <td>${total}</td> </tr>`;
+  document.getElementById('TablaCotizacion').innerHTML += `<tr> <td>valor total</td> <td>${total}</td> </tr>`;
 }
-
-// let boton = document.getElementById("mensajeValor")
-// boton.addEventListener("click", function(){alert("Gracias por preferir a Kaloop, con gusto te ayudaremos")})
-
-
-
-
 
